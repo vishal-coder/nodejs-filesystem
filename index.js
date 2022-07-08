@@ -3,10 +3,12 @@ import fs from "fs";
 
 const app = express();
 
+// making express listen to our request at port 3001
 app.listen(3001, () => {
   console.log("Listening requests...");
 });
 
+// this is for default request
 app.get("/", (req, res) => {
   console.log("request accepted");
   res.send(
@@ -16,19 +18,16 @@ app.get("/", (req, res) => {
   );
 });
 
+// when user enters "createFIle" this function will get called and
+//file with current date-time will be created with timestamp as body of file
 app.get("/createfile", (req, res) => {
-  const file = createFile();
-  res.send(`file Created with name ${file}`);
-});
-
-function createFile() {
   const { fileName, timestamp } = getFileDate();
   fs.writeFile(`./Backup/${fileName}.txt`, JSON.stringify(timestamp), (err) => {
     if (err) throw err;
     console.log("file created" + fileName);
   });
-  return fileName;
-}
+  res.send(`file Created with name ${file}`);
+});
 
 app.get("/getfilelist", (req, res) => {
   fs.readdir("./Backup/", (err, files) => {
@@ -40,6 +39,7 @@ app.get("/getfilelist", (req, res) => {
   });
 });
 
+// this function is written to get current timestamp and date-time
 function getFileDate() {
   var timestamp = new Date().getTime();
   let ts = Date.now();
