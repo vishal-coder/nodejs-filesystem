@@ -26,16 +26,20 @@ app.get("/createfile", (req, res) => {
     if (err) throw err;
     console.log("file created" + fileName);
   });
-  res.send(`file Created with name ${file}`);
+  res.send(`file Created with name ${fileName}.txt`);
 });
 
 app.get("/getfilelist", (req, res) => {
   fs.readdir("./Backup/", (err, files) => {
-    let fileList = "Files in directory are<br>";
-    files.forEach((file) => {
-      fileList += file + "<br>";
-    });
-    res.send(fileList);
+    if (files.length == 0) {
+      res.send("No files in directory");
+    } else {
+      let fileList = "Files in directory are<br>";
+      files.forEach((file) => {
+        fileList += file + "<br>";
+      });
+      res.send(fileList);
+    }
   });
 });
 
