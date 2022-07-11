@@ -20,25 +20,26 @@ app.get("/", (req, res) => {
 
 // when user enters "createFIle" this function will get called and
 //file with current date-time will be created with timestamp as body of file
-app.get("/createfile", (req, res) => {
+app.post("/createfile", (req, res) => {
   const { fileName, timestamp } = getFileDate();
   fs.writeFile(`./Backup/${fileName}.txt`, JSON.stringify(timestamp), (err) => {
     if (err) throw err;
     console.log("file created" + fileName);
   });
-  res.send(`file Created with name ${fileName}.txt`);
+  res.send({ filename: `${fileName}.txt` });
 });
 
 app.get("/getfilelist", (req, res) => {
   fs.readdir("./Backup/", (err, files) => {
     if (files.length == 0) {
-      res.send("No files in directory");
+      res.send("No files in directory..YO");
     } else {
-      let fileList = "Files in directory are<br>";
-      files.forEach((file) => {
-        fileList += file + "<br>";
-      });
-      res.send(fileList);
+      // let fileList = "Files in directory are<br>";
+      // files.forEach((file) => {
+      //   fileList += file + "<br>";
+      // });
+      var myJsonString = JSON.stringify(files);
+      res.send(myJsonString);
     }
   });
 });
