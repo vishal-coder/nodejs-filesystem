@@ -1,0 +1,18 @@
+Heroku URL : - https://nodejs-filesystem-guvi.herokuapp.com/
+Github repo URL : - https://github.com/vishal-coder/nodejs-filesystem
+Last commited hash ID : - 
+
+
+https://nodejs-filesystem-guvi.herokuapp.com/createfile
+https://nodejs-filesystem-guvi.herokuapp.com/getfilelist
+
+GET createfile
+	https://nodejs-filesystem-guvi.herokuapp.com/createfile
+	GET / createfile - creates text file in required folder
+
+	response -{ "filename": "11-7-2022 21_53_8.txt" }
+
+GET / getfilelist - returns array of filelist in required folder
+
+response - array of file list
+Sample response - ["11-7-2022 20_19_2.txt","11-7-2022 20_19_4.txt"]
