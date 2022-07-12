@@ -3,9 +3,14 @@ import fs from "fs";
 
 const app = express();
 
+import dotenv from "dotenv";
+dotenv.config();
+app.use(express.json());
+
 // making express listen to our request at port 3001
-app.listen(3001, () => {
-  console.log("Listening requests...");
+
+app.listen(process.env.PORT, () => {
+  console.log("Listening to requests....");
 });
 
 // this is for default request
