@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 // when user enters "createFIle" this function will get called and
 //file with current date-time will be created with timestamp as body of file
-app.post("/createfile", (req, res) => {
+app.get("/createfile", (req, res) => {
   const { fileName, timestamp } = getFileDate();
   fs.writeFile(`./Backup/${fileName}.txt`, JSON.stringify(timestamp), (err) => {
     if (err) throw err;
